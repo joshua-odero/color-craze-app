@@ -1,0 +1,68 @@
+/* Page Background */
+.game-page {
+  background-image: url("../assets/background_pics/background_pic2.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Game board container */
+.game-board {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 30px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Row for shapes + sliders */
+.shapes-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+/* Individual shape + slider container */
+.shape-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  gap: 15px;
+}
+
+/* Drop zone */
+.drop-zone {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f5c26b;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* GOLD MIX BUTTON */
+.mix-btn {
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #3a2300;
+  border: none;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.mix-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
