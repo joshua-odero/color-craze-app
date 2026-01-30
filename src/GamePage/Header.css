@@ -1,0 +1,81 @@
+.header {
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* GOLD TITLE BOX */
+.game-title-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.game-title {
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #3a2300;
+  padding: 14px 32px;
+  border-radius: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* USER ROW */
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* AVATAR + TEXT */
+.avatar-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid gold;
+}
+
+/* WELCOME + NAME ORDER */
+.name-welcome {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.name {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* BUTTONS */
+.buttons-row {
+  display: flex;
+  gap: 12px;
+}
+
+/* GOLD BUTTON STYLE */
+.gold-btn {
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #3a2300;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gold-btn:hover {
+  transform: scale(1.05);
+}
