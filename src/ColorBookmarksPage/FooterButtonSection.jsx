@@ -1,7 +1,25 @@
-function FooterButtonSection() {
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+function FooterButtonSection({ avatar = "/kids_avatars/default.png", name = "Player" }) {
+  const navigate = useNavigate();
+
+  // Go to Game Page button handler
+  const handleGoToGame = () => {
+    navigate("/game", {
+      state: {
+        avatar,
+        name
+      }
+    });
+  };
+
   return (
     <div className="flex items-center justify-center w-full py-5">
-      <button className="bg-orange-400 rounded-sm w-50 px-3 py-3 font-bold cursor-pointer">
+      <button
+        onClick={handleGoToGame}
+        className="bg-orange-400 rounded-sm w-52 px-3 py-3 font-bold cursor-pointer hover:bg-orange-500 transition"
+      >
         Go to Game Page
       </button>
     </div>
@@ -9,3 +27,4 @@ function FooterButtonSection() {
 }
 
 export default FooterButtonSection;
+

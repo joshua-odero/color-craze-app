@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import Header from "../components/Header";
 import ColorShape from "../components/ColorShape";
@@ -8,9 +8,11 @@ import DropZone from "../components/DropZone";
 
 import "../styles/GamePage.css";
 
-
 function GamePage() {
   const navigate = useNavigate(); 
+  const { state } = useLocation(); // receives data from Profiles Page
+  const selectedAvatar = state?.avatar || "/kids_avatars/default.png"; // fallback avatar
+  const selectedName = state?.name || "Player"; // fallback name
 
   // Stores the colors that have been dropped 
   const [selectedColors, setSelectedColors] = useState([]);
@@ -20,7 +22,6 @@ function GamePage() {
 
   // Called when a color is dropped in DropZone
   const handleDrop = (color) => {
-    // Only allow up to 2 colors and prevent duplicates
     if (selectedColors.length < 2 && !selectedColors.includes(color)) {
       setSelectedColors([...selectedColors, color]);
     }
@@ -28,26 +29,27 @@ function GamePage() {
 
   // Called when user clicks Mix button
   const handleMix = () => {
-    // Navigate to ResultPage and pass RGB state
-    navigate("/result", { state: rgb });
+    navigate("/result", { state: { ...rgb, avatar: selectedAvatar, name: selectedName } });
   };
 
   return (
-    <div className="game-page">
+    <div
+      className="game-page min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/background_pics/background_pic2.png')" }}
+    >
       {/* Header with game title, avatar, name, buttons */}
-      <Header />
+      <Header showAvatar={true} avatar={selectedAvatar} name={selectedName} />
 
       <div className="game-board">
         {/* Row of color shapes with their sliders */}
         <div className="shapes-row">
-
           {/* RED shape + slider */}
           <div className="shape-slider">
             <ColorShape color="red" shape="circle" />
             <ColorSlider
-              value={rgb.red} // current red value
-              disabled={!selectedColors.includes("red")} // activate slider only if red selected
-              onChange={(value) => setRgb({ ...rgb, red: value })} // update red value
+              value={rgb.red}
+              disabled={!selectedColors.includes("red")}
+              onChange={(value) => setRgb({ ...rgb, red: value })}
             />
           </div>
 
@@ -70,7 +72,6 @@ function GamePage() {
               onChange={(value) => setRgb({ ...rgb, blue: value })}
             />
           </div>
-
         </div>
 
         {/* Drop zone to receive colors */}
@@ -89,5 +90,4 @@ function GamePage() {
   );
 }
 
-export default GamePage; 
-
+export default GamePage;

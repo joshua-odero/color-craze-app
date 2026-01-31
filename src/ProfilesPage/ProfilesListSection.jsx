@@ -6,15 +6,18 @@ It uses a SingleUser component to display each individual profile.
 Imports:
     -> useState: React hook to manage state
     -> usersData: JSON file containing an array of user objects
-    -> SingerUser: child component for displaying each profile
+    -> SingleUser: child component for displaying each profile
 
 */
 
 import { useState } from "react";
 import usersData from "./../assets/objects.json";
-import SingleUser from "./SingleUser";
+import SingleUser from "./SingleProfile";
+import { useNavigate } from "react-router-dom";
 
 function KidsProfiles () {
+
+    const navigate = useNavigate();
 
     // State hook to store list of user profiles - initially set to the imported usersData
     const [items, setItems] = useState(usersData)
@@ -22,10 +25,15 @@ function KidsProfiles () {
     // Debugging: log the data to console
     console.log(usersData);
 
+    // Handle avatar selection: pass avatar image + name to GamePage
+    const handleSelectProfile = (profile) => {
+        navigate("/game", { state: { avatar: profile.image, name: profile.name } });
+    }
+
     return (
         <>
-        {/*Outer container: 
-            -> sets background, padding, rounded corners 
+        {/*Outer container:
+            -> sets background, padding, rounded corners
             -> limits max width and centers it horizontally
             -> uses CSS Grid to display profile cards responsively*/}
 
@@ -36,9 +44,10 @@ function KidsProfiles () {
                Includes unique key for React rendering and pass profile data as prop*/}
 
             {items.map((item)=>(
-                <SingleUser 
-                key = {item.id}
-                profile = {item}
+                <SingleUser
+                    key={item.id}
+                    profile={item}
+                    onSelect={() => handleSelectProfile(item)}
                 />
             ))}
 
@@ -47,5 +56,5 @@ function KidsProfiles () {
     );
 }
 
-// Export kidsProfiles for use in other parts of the app
+// Export KidsProfiles for use in other parts of the app
 export default KidsProfiles;
