@@ -1,17 +1,35 @@
-import React from 'react';
-import Hailey from '/kids_avatars/Hailey.png';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function UserNavBarSection() {
+  const navigate = useNavigate();
+  const { state } = useLocation(); // receive avatar + name from previous page
+  const avatar = state?.avatar || "/kids_avatars/default.png";
+  const name = state?.name || "Player";
+
+  // Logout button handler
+  const handleLogout = () => {
+    navigate("/"); // go back to Intro Page
+  };
+
   return (
-    <div className="flex items-center justify-center w-full py-5 gap-x-1.5">
+    <div className="flex items-center justify-center w-full py-5 gap-x-2">
+      {/* Avatar */}
       <div className="bg-white w-12 h-12 rounded-full p-1">
-        <img src={Hailey} alt="kid_avatar" />
+        <img src={avatar} alt="kid_avatar" className="rounded-full w-full h-full" />
       </div>
-      <div className="flex items-center justify-center bg-white font-bold px-3 py-1">
-        Welcome, [Name]
+
+      {/* Name */}
+      <div className="flex items-center justify-center bg-white font-bold px-3 py-1 rounded">
+        Welcome, {name}
       </div>
+
+      {/* Logout button */}
       <div className="flex items-center justify-center">
-        <button className="bg-orange-400 rounded-sm w-30 px-3 py-1 font-bold cursor-pointer">
+        <button
+          onClick={handleLogout}
+          className="bg-orange-400 rounded-sm w-28 px-3 py-1 font-bold cursor-pointer hover:bg-orange-500 transition"
+        >
           Logout
         </button>
       </div>
@@ -19,4 +37,4 @@ function UserNavBarSection() {
   );
 }
 
-export default UserNavBarSection
+export default UserNavBarSection;
