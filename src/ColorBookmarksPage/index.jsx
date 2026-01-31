@@ -1,5 +1,5 @@
-import LogoSection from "../MainComponents/LogoSection";
-import UserNavBarSection from "../MainComponents/UserNavBarSection";
+import LogoSection from "./LogoSection";
+import UserNavBarSection from "./UserNavBarSection";
 import BookmarksListSection from "./BookmarksListSection";
 import FooterButtonSection from "./FooterButtonSection";
 
