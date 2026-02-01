@@ -5,7 +5,6 @@ function ColorSlider({ value, onChange, disabled }) {
       min="0"                     
       max="255"                  
       value={value}               
-      disabled={disabled}         
       onChange={(e) => onChange(Number(e.target.value))} 
     />
   );

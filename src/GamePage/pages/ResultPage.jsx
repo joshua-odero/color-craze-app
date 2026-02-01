@@ -1,37 +1,37 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import Header from "../components/Header";
 import StarResult from "../components/StarResult";
 
+import { saveColor } from "../utils/ColorStorage";
+
 import "../styles/ResultPage.css";
 
 function ResultPage() {
-  const navigate = useNavigate(); 
-  const { state } = useLocation(); // receives RGB + avatar + name
+  const navigate = useNavigate();
+  const { state } = useLocation(); // receives RGB values from GamePage
+
+  // RGB values from GamePage
   const red = state?.red || 0;
   const green = state?.green || 0;
   const blue = state?.blue || 0;
-  const avatar = state?.avatar || "/kids_avatars/default.png";
-  const name = state?.name || "Player";
+
+  // Single source of truth: localStorage
+  const avatar = localStorage.getItem("avatar") || "/kids_avatars/default.png";
+  const name = localStorage.getItem("name") || "Player";
 
   const resultColor = `rgb(${red}, ${green}, ${blue})`;
 
-  // Reset button goes back to Game Page with avatar and name preserved
+  // Reset button
   const handleReset = () => {
-    navigate("/game", { state: { avatar, name } });
+    navigate("/game");
   };
 
-  // Save button saves color + avatar + name to localStorage
+  // Save button
   const handleSave = () => {
-    const savedColors = JSON.parse(localStorage.getItem("savedColors")) || [];
-    
-    savedColors.push({ color: resultColor, avatar, name });
-
-    localStorage.setItem("savedColors", JSON.stringify(savedColors));
-
+    saveColor({ color: resultColor, avatar, name });
     alert("Color saved!");
-
-    navigate("/bookmarks", { state: { avatar, name } });
+    navigate("/bookmarks");
   };
 
   return (
@@ -39,11 +39,10 @@ function ResultPage() {
       className="result-page min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/background_pics/background_pic2.png')" }}
     >
-      <Header showAvatar={true} avatar={avatar} name={name} />
+      <Header showBookmark={true} avatar={avatar} name={name} />
 
       <div className="result-board">
         <StarResult color={resultColor} />
-
         <p>The color is {resultColor}</p>
 
         {/* Reset + Save buttons */}
@@ -54,6 +53,7 @@ function ResultPage() {
           >
             Reset
           </button>
+
           <button
             onClick={handleSave}
             className="bg-yellow-400 px-4 py-2 rounded font-bold"
