@@ -1,32 +1,32 @@
 [
   {
     "name": "Kelcy",
-    "Id": 1,
+    "id": 1,
     "image": "/kids_avatars/Kelcy.png"
   },
   {
     "name": "Hailey",
-    "Id": 2,
+    "id": 2,
     "image": "/kids_avatars/Hailey.png"
   },
   {
     "name": "Maya",
-    "Id": 3,
+    "id": 3,
     "image": "/kids_avatars/Maya.png"
   },
   {
     "name": "Liam",
-    "Id": 4,
+    "id": 4,
     "image": "/kids_avatars/Liam.png"
   },
   {
     "name": "Tiana",
-    "Id": 5,
+    "id": 5,
     "image": "/kids_avatars/Tiana.png"
   },
   {
     "name": "Junior",
-    "Id": 6,
+    "id": 6,
     "image": "/kids_avatars/Junior.png"
   }
 ]
