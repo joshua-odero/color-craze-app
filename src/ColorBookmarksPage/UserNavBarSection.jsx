@@ -1,30 +1,27 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function UserNavBarSection() {
   const navigate = useNavigate();
-  const { state } = useLocation(); // receive avatar + name from previous page
-  const avatar = state?.avatar || "/kids_avatars/default.png";
-  const name = state?.name || "Player";
 
-  // Logout button handler
+  //  Get Avatar and Name from local storage
+  const avatar = localStorage.getItem("avatar") || "/kids_avatars/default.png";
+  const name = localStorage.getItem("name") || "Player";
+
   const handleLogout = () => {
-    navigate("/"); // go back to Intro Page
+    navigate("/"); // back to Intro Page
   };
 
   return (
     <div className="flex items-center justify-center w-full py-5 gap-x-2">
-      {/* Avatar */}
       <div className="bg-white w-12 h-12 rounded-full p-1">
         <img src={avatar} alt="kid_avatar" className="rounded-full w-full h-full" />
       </div>
 
-      {/* Name */}
       <div className="flex items-center justify-center bg-white font-bold px-3 py-1 rounded">
         Welcome, {name}
       </div>
 
-      {/* Logout button */}
       <div className="flex items-center justify-center">
         <button
           onClick={handleLogout}

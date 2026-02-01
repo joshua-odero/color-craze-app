@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
 import ColorShape from "../components/ColorShape";
@@ -9,12 +9,13 @@ import DropZone from "../components/DropZone";
 import "../styles/GamePage.css";
 
 function GamePage() {
-  const navigate = useNavigate(); 
-  const { state } = useLocation(); // receives data from Profiles Page
-  const selectedAvatar = state?.avatar || "/kids_avatars/default.png"; // fallback avatar
-  const selectedName = state?.name || "Player"; // fallback name
+  const navigate = useNavigate();
 
-  // Stores the colors that have been dropped 
+  // Single source of truth: localStorage
+  const selectedAvatar = localStorage.getItem("avatar") || "/kids_avatars/default.png";
+  const selectedName = localStorage.getItem("name") || "Player";
+
+  // Stores the colors that have been dropped
   const [selectedColors, setSelectedColors] = useState([]);
 
   // Stores the RGB values of the selected colors
@@ -29,7 +30,9 @@ function GamePage() {
 
   // Called when user clicks Mix button
   const handleMix = () => {
-    navigate("/result", { state: { ...rgb, avatar: selectedAvatar, name: selectedName } });
+    navigate("/result", {
+      state: { ...rgb, avatar: selectedAvatar, name: selectedName },
+    });
   };
 
   return (
@@ -43,34 +46,19 @@ function GamePage() {
       <div className="game-board">
         {/* Row of color shapes with their sliders */}
         <div className="shapes-row">
-          {/* RED shape + slider */}
           <div className="shape-slider">
             <ColorShape color="red" shape="circle" />
-            <ColorSlider
-              value={rgb.red}
-              disabled={!selectedColors.includes("red")}
-              onChange={(value) => setRgb({ ...rgb, red: value })}
-            />
+            <ColorSlider value={rgb.red} onChange={(value) => setRgb({ ...rgb, red: value })} />
           </div>
 
-          {/* GREEN shape + slider */}
           <div className="shape-slider">
             <ColorShape color="green" shape="triangle" />
-            <ColorSlider
-              value={rgb.green}
-              disabled={!selectedColors.includes("green")}
-              onChange={(value) => setRgb({ ...rgb, green: value })}
-            />
+            <ColorSlider value={rgb.green} onChange={(value) => setRgb({ ...rgb, green: value })} />
           </div>
 
-          {/* BLUE shape + slider */}
           <div className="shape-slider">
             <ColorShape color="blue" shape="square" />
-            <ColorSlider
-              value={rgb.blue}
-              disabled={!selectedColors.includes("blue")}
-              onChange={(value) => setRgb({ ...rgb, blue: value })}
-            />
+            <ColorSlider value={rgb.blue} onChange={(value) => setRgb({ ...rgb, blue: value })} />
           </div>
         </div>
 
@@ -78,11 +66,7 @@ function GamePage() {
         <DropZone onDrop={handleDrop} />
 
         {/* Mix button */}
-        <button
-          className="mix-btn"
-          onClick={handleMix}
-          disabled={selectedColors.length !== 2}
-        >
+        <button className="mix-btn" onClick={handleMix} disabled={selectedColors.length !== 2}>
           Mix
         </button>
       </div>
