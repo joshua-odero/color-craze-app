@@ -4,7 +4,7 @@ ProfileSection component serves as the main container for the profiles page
 It combines the header and the grid of kid profiles into one section
 */
 
-import Header from "../GamePage/components/Header";
+import Header from "./TitleSection";
 import KidsProfiles from "./ProfilesListSection";
 
 function ProfileSection() {
@@ -19,7 +19,7 @@ function ProfileSection() {
         <Header />
 
         {/* Grid of kid profiles */}
-        <div className="flex-grow flex items-center justify-center">
+        <div className="flex grow items-center justify-center">
           <KidsProfiles />
         </div>
       </div>
