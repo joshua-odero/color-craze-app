@@ -1,33 +1,32 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
 import StarResult from "../components/StarResult";
-
 import { saveColor } from "../utils/ColorStorage";
 
 import "../styles/ResultPage.css";
 
 function ResultPage() {
   const navigate = useNavigate();
-  const { state } = useLocation(); // receives RGB values from GamePage
+  const { state } = useLocation(); // receives RGB + avatar + name
 
-  // RGB values from GamePage
   const red = state?.red || 0;
   const green = state?.green || 0;
   const blue = state?.blue || 0;
 
-  // Single source of truth: localStorage
-  const avatar = localStorage.getItem("avatar") || "/kids_avatars/default.png";
-  const name = localStorage.getItem("name") || "Player";
+  // get avatar/name 
+  const avatar = localStorage.getItem("avatar");
+  const name = localStorage.getItem("name");
 
   const resultColor = `rgb(${red}, ${green}, ${blue})`;
 
   // Reset button
   const handleReset = () => {
-    navigate("/game");
+    localStorage.removeItem("savedColors");
+    navigate("/game", { state: { avatar, name } });
   };
 
-  // Save button
+  // Save button saves color + avatar + name to localStorage
   const handleSave = () => {
     saveColor({ color: resultColor, avatar, name });
     alert("Color saved!");
@@ -45,7 +44,6 @@ function ResultPage() {
         <StarResult color={resultColor} />
         <p>The color is {resultColor}</p>
 
-        {/* Reset + Save buttons */}
         <div className="buttons flex gap-3">
           <button
             onClick={handleReset}
