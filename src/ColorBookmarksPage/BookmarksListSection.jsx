@@ -28,7 +28,7 @@ function BookmarksListSection() {
     <div className="flex grow w-full py-15 my-3 items-center">
 
       <div className="flex flex-row flex-wrap gap-x-6 border border-yellow-700 bg-gray-300 rounded-xl w-xl mx-auto px-10 h-min">
-        {/* Check If there are no colors in the localstorage */}
+        {/* Check If there are no colors in the localstorage*/}
         {colors.length === 0 && <p>No saved colors yet!</p>}
 
         {/* 
@@ -39,7 +39,6 @@ function BookmarksListSection() {
           <div
 
             key={index}
-
             className="flex justify-center items-center w-15 h-15 my-3"
           > 
             {/* Create a star Icon with Fontawesome library */}
