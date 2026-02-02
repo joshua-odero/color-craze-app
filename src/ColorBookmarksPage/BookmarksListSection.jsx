@@ -57,5 +57,3 @@ function BookmarksListSection() {
 }
 
 export default BookmarksListSection; //Export function component
-
-export default BookmarksListSection;
