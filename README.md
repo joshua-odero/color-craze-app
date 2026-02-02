@@ -5,6 +5,21 @@ This is a project of an educational website that teaches kids to combine primary
 - **Game Page** -Implements the core logic of the code. A user can select two colors; change there RGB values and mix them to create new colors. The color mixture is displayed and can be bookmarked on the **Results Page**.
 - **Bookmarks Page** - After saving a color mixture, it is displayed in a list on this page
 
+![Intro Page](src/assets/demo_pics/intro_page.png)
+*Intro Page*
+
+![Profiles Page](src/assets/demo_pics/profiles_page.png)
+*Profiles Page*
+
+![Game Page](src/assets/demo_pics/game_page.png)
+*Game Page*
+
+![Result Page](src/assets/demo_pics/result_page.png)
+*Result Page*
+
+![Bookmark Page](src/assets/demo_pics/bookmark_page.png)
+*Bookmark Page*
+
 The website imports a list of dummy data in [this data file](src/assets/objects.json) to display details about a kid's profile such as the **id**, their **name** and **images**.
 
 
@@ -31,7 +46,7 @@ git clone <your SSH/Http path>
 Switch to the app directory using the **cd** command, Use **npm** to install the project dependencies:
 
 ```bash
-cd react-components-props-vite-lab
+cd color-craze-app
 ```
 
 ```bash
