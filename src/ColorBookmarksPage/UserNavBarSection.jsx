@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
+//function component to render navbar section which contains the player's profile picture and the logout button
 function UserNavBarSection() {
   const navigate = useNavigate();
   const { state } = useLocation(); // receive avatar + name from previous page

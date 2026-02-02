@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+//Function component to render a footer with a button
 function FooterButtonSection({ avatar = "/kids_avatars/default.png", name = "Player" }) {
   const navigate = useNavigate();
 
@@ -26,5 +27,5 @@ function FooterButtonSection({ avatar = "/kids_avatars/default.png", name = "Pla
   );
 }
 
-export default FooterButtonSection;
+export default FooterButtonSection; //Export function component
 
