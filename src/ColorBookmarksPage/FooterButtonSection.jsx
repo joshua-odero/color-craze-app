@@ -2,8 +2,8 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-//Function component to render a footer with a button
-function FooterButtonSection({ avatar = "/kids_avatars/default.png", name = "Player" }) {
+function FooterButtonSection() {
+
   const navigate = useNavigate();
 
   // Go to Game Page button handler
