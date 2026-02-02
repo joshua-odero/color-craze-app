@@ -1,3 +1,4 @@
+// Function component for the logo section
 function LogoSection() {
   return (
     <div className="flex items-center justify-center w-full py-5 top-0">
@@ -8,4 +9,4 @@ function LogoSection() {
   );
 }
 
-export default LogoSection;
+export default LogoSection; //export function component

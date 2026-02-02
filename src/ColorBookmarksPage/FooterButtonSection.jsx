@@ -50,4 +50,5 @@ function FooterButtonSection() {
 
 }
 
-export default FooterButtonSection;
+export default FooterButtonSection; //Export function component
+
