@@ -3,17 +3,14 @@ const STORAGE_KEY = "savedColors";
 
 // Get all saved colors
 export function getSavedColors() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  const data = localStorage.getItem(STORAGE_KEY);
+  const parsed = JSON.parse(data);
+  return Array.isArray(parsed) ? parsed : [];
 }
 
-// Save a new color
-export function saveColor(color) {
-  const savedColors = getSavedColors(); // get existing colors
-  savedColors.push(color);              // add new color
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(savedColors)          // save back as JSON
-  );
+// Save a new color object
+export function saveColor(colorData) {
+  const savedColors = getSavedColors();
+  savedColors.push(colorData);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(savedColors));
 }
-
-
