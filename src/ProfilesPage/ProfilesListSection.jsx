@@ -27,8 +27,11 @@ function KidsProfiles () {
 
     // Handle avatar selection: pass avatar image + name to GamePage
     const handleSelectProfile = (profile) => {
-        navigate("/game", { state: { avatar: profile.image, name: profile.name } });
-    }
+  localStorage.setItem("avatar", profile.image);
+  localStorage.setItem("name", profile.name);
+    // Navigate to game
+    navigate("/game");
+    };
 
     return (
         <>
